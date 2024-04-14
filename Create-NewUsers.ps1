@@ -13,8 +13,8 @@ foreach ($user in $userfile) {
     $pass = ConvertTo-SecureString -String $DEFAULT_PW -AsPlainText -Force
 
 
-    #New-ADUser -Name $name -GivenName $user.FirstName -Surname $user.LastName -EmailAddress $email -SamAccountName $samAccountNAme -UserPrincipalName $email `
-    #-Title $user.JobTitle -DisplayName $name -ChangePasswordAtLogon $true -EmployeeID $user.EmployeeId -Department $user.Department -Path $TARGET_OU -AccountPassword $pass -Enabled $true -Verbose
+    New-ADUser -Name $name -GivenName $user.FirstName -Surname $user.LastName -EmailAddress $email -SamAccountName $samAccountNAme -UserPrincipalName $email `
+    -Title $user.JobTitle -DisplayName $name -ChangePasswordAtLogon $true -EmployeeID $user.EmployeeId -Department $user.Department -Path $TARGET_OU -AccountPassword $pass -Enabled $true -Verbose
 }
 
 Move-Item -Path $FILE_PATH -Destination $COMPLETED_PATH
