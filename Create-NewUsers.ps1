@@ -10,11 +10,11 @@ foreach ($user in $userfile) {
     $name = $user.FirstName + " " + $user.LastName
     $samAccountNAme = $user.FirstName + "." + $user.LastName
     $email = $samAccountNAme + $COMPANY_EMAIL
-    $pass = ConvertTo-SecureString -String $DEFAULT_PW -AsPlainText -Force
+    $secure_pass = ConvertTo-SecureString -String $DEFAULT_PW -AsPlainText -Force
 
 
     New-ADUser -Name $name -GivenName $user.FirstName -Surname $user.LastName -EmailAddress $email -SamAccountName $samAccountNAme -UserPrincipalName $email `
-    -Title $user.JobTitle -DisplayName $name -ChangePasswordAtLogon $true -EmployeeID $user.EmployeeId -Department $user.Department -Path $TARGET_OU -AccountPassword $DEFAULT_PW  -Enabled $true -Verbose
+    -Title $user.JobTitle -DisplayName $name -ChangePasswordAtLogon $true -EmployeeID $user.EmployeeId -Department $user.Department -Path $TARGET_OU -AccountPassword $secure_pass  -Enabled $true -Verbose
 }
 
 Move-Item -Path $FILE_PATH -Destination $COMPLETED_PATH
